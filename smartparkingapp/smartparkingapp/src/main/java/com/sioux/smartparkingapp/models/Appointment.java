@@ -48,30 +48,6 @@ public class Appointment {
     private String managerID;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Column(name = "visitor_phone")
     private String visitorPhone;
 
@@ -79,26 +55,14 @@ public class Appointment {
 //@JoinColumn(name="appointment_id",referencedColumnName = "manager_id")
 //private List<AppointmentManager> appointmentManagers;
 
-    public Appointment(LocalDateTime starting_time, int duration, String licensePlate, String visitorName, String managerID, String visitorPhone)
+    @Override
+    public String toString()
     {
-       // this.createdDate = starting_time;
-        this.duration = duration;
-        this.licensePlate = licensePlate;
-        this.visitorName = visitorName;
-        this.managerID = managerID;
-        this.visitorPhone = visitorPhone;
+        return "Appointment{" + "id=" + appointment_id + ", starting_time=" + createdDate +
+                ", duration=" + duration + ", licensePlate='" + licensePlate + '\'' +
+                ", visitorName='" + visitorName + '\'' + ", managerID='" + managerID + '\'' +
+                ", visitorPhone='" + visitorPhone + '\'' + '}';
     }
-
-
-
-//    @Override
-//    public String toString()
-//    {
-//        return "Appointment{" + "id=" + appointment_id + ", starting_time=" + createdDate +
-//                ", duration=" + duration + ", licensePlate='" + licensePlate + '\'' +
-//                ", visitorName='" + visitorName + '\'' + ", managerID='" + managerID + '\'' +
-//                ", visitorPhone='" + visitorPhone + '\'' + '}';
-//    }
 }
 
 
