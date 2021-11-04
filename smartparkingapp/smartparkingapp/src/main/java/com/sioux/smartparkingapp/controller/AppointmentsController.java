@@ -47,12 +47,12 @@ public class AppointmentsController {
 
 
     @PutMapping("/update")
-    public Appointment updateAppointment(@RequestBody Appointment appointment){
+    public String updateAppointment(@RequestBody Appointment appointment){
         return appointmentDetailsServise.updateAppointment(appointment);
     }
 
 
-    @DeleteMapping("/deleteAppointment/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteNewsItem(@PathVariable Long id){
 
         return appointmentDetailsServise.deleteAppointment(id);

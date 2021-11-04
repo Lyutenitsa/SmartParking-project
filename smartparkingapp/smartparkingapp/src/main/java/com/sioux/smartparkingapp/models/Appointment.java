@@ -1,5 +1,8 @@
 package com.sioux.smartparkingapp.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,8 +30,10 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long appointment_id;
 
-    @Column(name = "starting_time")
-    private String starting_time;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private LocalDate createdDate;
+
+    private LocalTime startTime;
 
     @Column(name = "duration")
     private int duration;
@@ -42,16 +47,41 @@ public class Appointment {
     @Column(name = "manager_id")
     private String managerID;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @Column(name = "visitor_phone")
     private String visitorPhone;
 
-@OneToMany(targetEntity = AppointmentManager.class,cascade = CascadeType.ALL)
-@JoinColumn(name="appointment_id",referencedColumnName = "manager_id")
-private List<AppointmentManager> appointmentManagers;
+//@OneToMany(targetEntity = AppointmentManager.class,cascade = CascadeType.ALL)
+//@JoinColumn(name="appointment_id",referencedColumnName = "manager_id")
+//private List<AppointmentManager> appointmentManagers;
 
-    public Appointment(String starting_time, int duration, String licensePlate, String visitorName, String managerID, String visitorPhone)
+    public Appointment(LocalDateTime starting_time, int duration, String licensePlate, String visitorName, String managerID, String visitorPhone)
     {
-        this.starting_time = starting_time;
+       // this.createdDate = starting_time;
         this.duration = duration;
         this.licensePlate = licensePlate;
         this.visitorName = visitorName;
@@ -61,14 +91,14 @@ private List<AppointmentManager> appointmentManagers;
 
 
 
-    @Override
-    public String toString()
-    {
-        return "Appointment{" + "id=" + appointment_id + ", starting_time=" + starting_time +
-                ", duration=" + duration + ", licensePlate='" + licensePlate + '\'' +
-                ", visitorName='" + visitorName + '\'' + ", managerID='" + managerID + '\'' +
-                ", visitorPhone='" + visitorPhone + '\'' + '}';
-    }
+//    @Override
+//    public String toString()
+//    {
+//        return "Appointment{" + "id=" + appointment_id + ", starting_time=" + createdDate +
+//                ", duration=" + duration + ", licensePlate='" + licensePlate + '\'' +
+//                ", visitorName='" + visitorName + '\'' + ", managerID='" + managerID + '\'' +
+//                ", visitorPhone='" + visitorPhone + '\'' + '}';
+//    }
 }
 
 

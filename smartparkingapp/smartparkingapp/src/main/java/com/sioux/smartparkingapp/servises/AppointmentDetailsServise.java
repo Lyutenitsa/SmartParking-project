@@ -1,6 +1,6 @@
 package com.sioux.smartparkingapp.servises;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
+
 import com.sioux.smartparkingapp.Repo.AppointmentRepository;
 import com.sioux.smartparkingapp.models.Appointment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,8 @@ public class AppointmentDetailsServise {
 
         return "appointment removed";
     }
-    public Appointment updateAppointment(Appointment appointment){
-        return appointmentRepository.save(appointment);
+    public String updateAppointment(Appointment appointment){
+        appointmentRepository.save(appointment);
+        return "appointment updated successfully";
     }
 }
