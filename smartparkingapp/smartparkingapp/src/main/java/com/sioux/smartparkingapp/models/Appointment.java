@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,10 +28,10 @@ public class Appointment {
     private Long appointment_id;
 
     @Column(name = "starting_time")
-    private LocalDateTime starting_time;
+    private String starting_time;
 
     @Column(name = "duration")
-    private LocalTime duration;
+    private int duration;
 
     @Column(name = "license_plate")
     private String licensePlate;
@@ -48,7 +49,7 @@ public class Appointment {
 @JoinColumn(name="appointment_id",referencedColumnName = "manager_id")
 private List<AppointmentManager> appointmentManagers;
 
-    public Appointment(LocalDateTime starting_time, LocalTime duration, String licensePlate, String visitorName, String managerID, String visitorPhone)
+    public Appointment(String starting_time, int duration, String licensePlate, String visitorName, String managerID, String visitorPhone)
     {
         this.starting_time = starting_time;
         this.duration = duration;
