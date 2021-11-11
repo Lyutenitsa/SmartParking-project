@@ -1,8 +1,8 @@
 package com.sioux.smartparkingapp.controller;
 
-import com.sioux.smartparkingapp.Repo.IUserRepo;
-import com.sioux.smartparkingapp.models.Appointment;
+import com.sioux.smartparkingapp.Repo.UserRepository;
 import com.sioux.smartparkingapp.models.User;
+import com.sioux.smartparkingapp.servises.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,16 +12,16 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
-    private IUserRepo userRepo;
+    private UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<User> logIn(@RequestBody User user)
     {
-        Optional<User> _user = userRepo.findByUsername(user.getUsername());
+        Optional<User> _user = userService.findByUserName(user.getUsername());
         if(_user.isEmpty())
         {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -38,10 +38,10 @@ public class UserController {
     @PostMapping("/signup")
     public ResponseEntity<User> signIn(@RequestBody User user)
     {
-        Optional<User> _user = userRepo.findByUsername(user.getUsername());
+        Optional<User> _user = userService.findByUserName(user.getUsername());
         if(_user.isEmpty())
         {
-            userRepo.save(user);
+            userService.saveUser(user);
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
 
