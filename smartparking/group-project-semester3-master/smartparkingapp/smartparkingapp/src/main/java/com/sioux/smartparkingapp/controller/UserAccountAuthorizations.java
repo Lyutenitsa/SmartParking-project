@@ -20,6 +20,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.HashSet;
@@ -28,6 +30,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@RestController
+@RequestMapping(path="/auth")
 public class UserAccountAuthorizations {
     String err="Error";
     @Autowired
@@ -73,7 +77,9 @@ public class UserAccountAuthorizations {
         Optional<User> _user = userRepository.findByUsername(user.getUsername());
         if(_user.isEmpty())
         {
+//            user.setRoles("ROLE_USER");
             userRepository.save(user);
+
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
 
