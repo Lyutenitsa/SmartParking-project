@@ -20,47 +20,50 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
-
-        prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfigurations extends WebSecurityConfigurerAdapter {
-        @Autowired
-        UserDetailsServiceImpl userDetailsServiceImpl;
+    @Autowired
+    UserDetailsServiceImpl userDetailsServiceImpl;
 
-        @Autowired
-        private JwtAuthenticationEntryPoint unauthorizedHandler;
+    @Autowired
+    private JwtAuthenticationEntryPoint unauthorizedHandler;
 
-        @Bean
-        public AuthTokenFilter authenticationJwtTokenFilter() {
-                return new AuthTokenFilter();
-        }
+    @Bean
+    public AuthTokenFilter authenticationJwtTokenFilter()
+    {
+        return new AuthTokenFilter();
+    }
 
-        @Override
-        public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-                authenticationManagerBuilder.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder());
-        }
+    @Override
+    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception
+    {
+        authenticationManagerBuilder.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder());
+    }
 
-        @Bean
-        @Override
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception
+    {
+        return super.authenticationManagerBean();
+    }
 
-        public AuthenticationManager authenticationManagerBean() throws Exception {
-                return super.authenticationManagerBean();
-        }
-//changed a few thins
-        @Bean
-        public PasswordEncoder passwordEncoder() {
-                return new BCryptPasswordEncoder();
-        }
+    //changed a few things
+    @Bean
+    public PasswordEncoder passwordEncoder()
+    {
+        return new BCryptPasswordEncoder();
+    }
 
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-                http.cors().and().csrf().disable()
-                        .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-                        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                        .authorizeRequests().antMatchers("/appointments/**").permitAll()
-                        .antMatchers("/users/**").permitAll()
-                        .anyRequest().authenticated();
+    @Override
+    protected void configure(HttpSecurity http) throws Exception
+    {
+        http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+                .antMatchers("/appointments/**").permitAll()
+                .antMatchers("/auth/**").permitAll()
+                .anyRequest()
+                .authenticated();
 
-                http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-        }
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
 }
