@@ -4,6 +4,7 @@ import com.sioux.smartparkingapp.Repo.RoleRepository;
 import com.sioux.smartparkingapp.Repo.UserRepository;
 import com.sioux.smartparkingapp.Requests.JsonwebTokenResponse;
 import com.sioux.smartparkingapp.Requests.LoginRequest;
+import com.sioux.smartparkingapp.Requests.MessageResponse;
 import com.sioux.smartparkingapp.Requests.SignupRequest;
 import com.sioux.smartparkingapp.jsonwebtokenImplementations.JwtUtils;
 import com.sioux.smartparkingapp.models.ERole;
@@ -50,6 +51,27 @@ public class UserAccountAuthorizations {
     JwtUtils jwtUtils;
 
 
+
+    @PostMapping("/login")
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(item -> item.getAuthority())
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(new JsonwebTokenResponse(jwt,
+                userDetails.getId(),
+                userDetails.getUsername(),
+                userDetails.getEmail(),
+                roles));
+    }
 
 
 }
