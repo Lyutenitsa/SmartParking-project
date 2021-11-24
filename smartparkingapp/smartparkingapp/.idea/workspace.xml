@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="557a67c7-353d-455e-aed9-71f90805a843" name="Changes" comment="" />
+    <list default="true" id="557a67c7-353d-455e-aed9-71f90805a843" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../smartparking/group-project-semester3-master/smartparkingapp/smartparkingapp/src/main/java/com/sioux/smartparkingapp/controller/UserAccountAuthorizations.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../smartparking/group-project-semester3-master/smartparkingapp/smartparkingapp/src/main/java/com/sioux/smartparkingapp/controller/UserAccountAuthorizations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../smartparking/group-project-semester3-master/smartparkingapp/smartparkingapp/src/main/java/com/sioux/smartparkingapp/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,6 +56,8 @@
       <option name="presentableId" value="Default" />
       <updated>1636679168153</updated>
       <workItem from="1636679179589" duration="305000" />
+      <workItem from="1637593129531" duration="558000" />
+      <workItem from="1637746299555" duration="30000" />
     </task>
     <servers />
   </component>

@@ -12,7 +12,6 @@ import com.sioux.smartparkingapp.models.Role;
 import com.sioux.smartparkingapp.models.User;
 import com.sioux.smartparkingapp.securityImplementations.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,13 +26,15 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path="/auth")
 public class UserAccountAuthorizations {
+
+    //comment
+
     String err="Error";
     @Autowired
     AuthenticationManager authenticationManager;
@@ -50,9 +51,7 @@ public class UserAccountAuthorizations {
     @Autowired
     JwtUtils jwtUtils;
 
-
-
-    @PostMapping("/login")
+    @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -93,7 +92,7 @@ public class UserAccountAuthorizations {
         Set<Role> roles = new HashSet<>();
 
         if (strRoles == null) {
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+            Role userRole = roleRepository.findByName(ERole.ROLE_SECRETARY)
                     .orElseThrow(() -> new RuntimeException("Role is not found."));
             roles.add(userRole);
         } else {
@@ -106,7 +105,7 @@ public class UserAccountAuthorizations {
 
                                            break;
                     default:
-                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                        Role userRole = roleRepository.findByName(ERole.ROLE_SECRETARY)
                                 .orElseThrow(() -> new RuntimeException(" Role is not found."));
                         roles.add(userRole);
                 }
@@ -118,6 +117,5 @@ public class UserAccountAuthorizations {
 
         return ResponseEntity.ok(new MessageResponse("Registration successful"));
     }
-
 
 }
