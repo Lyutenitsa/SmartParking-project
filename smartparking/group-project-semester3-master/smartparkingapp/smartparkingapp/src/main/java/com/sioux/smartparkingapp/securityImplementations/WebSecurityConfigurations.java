@@ -62,6 +62,8 @@ public class WebSecurityConfigurations extends WebSecurityConfigurerAdapter {
                 .antMatchers("/appointments/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/email/**").permitAll()
+                .antMatchers("/manager/**").permitAll()
+
                 .anyRequest()
                 .authenticated();
 
