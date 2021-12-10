@@ -48,7 +48,7 @@ public class MailController {
         String content="<html><h1>"+appointment.getVisitorName()+" has arrived at the local parking grounds</h1><br><h4>The visitor will be at the building soon.</h4></html>";
 
        if(!onGround) {
-           content = "<html><h1>" + appointment.getVisitorName() + " has arrived at the of ground parking place</h1><br><h4>The visitor will be at the building in about 15 minutes.</h4></html>";
+           content = "<html><h1>" + appointment.getVisitorName() + " has arrived at the off-ground parking place</h1><br><h4>The visitor will be at the building in about 15 minutes.</h4></html>";
        }
         MimeMessage message = mailSender.createMimeMessage();
 

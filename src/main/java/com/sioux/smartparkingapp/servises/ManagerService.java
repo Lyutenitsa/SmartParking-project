@@ -15,6 +15,10 @@ public class ManagerService {
 
     private ManagerRepository managerRepository;
 
+    public ManagerService(ManagerRepository managerRepository) {
+        this.managerRepository = managerRepository;
+    }
+
     public Manager save(Manager manager){
         return managerRepository.save(manager);
     }

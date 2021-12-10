@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/manager")
 public class ManagerController {
+
     @Autowired
     private ManagerService managerService;
 
@@ -21,6 +22,7 @@ public class ManagerController {
     public Manager save(@RequestBody Manager manager){
         return managerService.save(manager);
     }
+
     @GetMapping()
     public ResponseEntity<List<Manager>> getAll() {
         List<Manager> managers = managerService.getAll();
