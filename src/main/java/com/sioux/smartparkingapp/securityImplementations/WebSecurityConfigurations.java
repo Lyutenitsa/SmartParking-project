@@ -2,7 +2,7 @@ package com.sioux.smartparkingapp.securityImplementations;
 
 import com.sioux.smartparkingapp.jsonwebtokenImplementations.JwtAuthenticationEntryPoint;
 import com.sioux.smartparkingapp.jsonwebtokenImplementations.AuthTokenFilter;
-import com.sioux.smartparkingapp.servises.UserDetailsServiceImpl;
+import com.sioux.smartparkingapp.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -62,6 +62,7 @@ public class WebSecurityConfigurations extends WebSecurityConfigurerAdapter {
                 .antMatchers("/appointments/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/manager/**").permitAll()
+                .antMatchers("/email/**").permitAll()
                 .antMatchers("/email/**").permitAll()
                 .anyRequest()
                 .authenticated();

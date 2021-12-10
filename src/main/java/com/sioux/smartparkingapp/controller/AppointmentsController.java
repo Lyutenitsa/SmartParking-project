@@ -1,7 +1,7 @@
 package com.sioux.smartparkingapp.controller;
 
 import com.sioux.smartparkingapp.models.Appointment;
-import com.sioux.smartparkingapp.servises.AppointmentDetailsServise;
+import com.sioux.smartparkingapp.services.AppointmentDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ public class AppointmentsController {
 
 
     @Autowired
-    private AppointmentDetailsServise appointmentDetailsServise;
+    private AppointmentDetailsService appointmentDetailsServise;
 
     @PostMapping("/save")
     public Appointment saveAppointment(@RequestBody Appointment appointment){

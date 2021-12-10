@@ -1,4 +1,4 @@
-package com.sioux.smartparkingapp.servises;
+package com.sioux.smartparkingapp.services;
 
 import com.sioux.smartparkingapp.Repo.UserRepository;
 import com.sioux.smartparkingapp.models.User;

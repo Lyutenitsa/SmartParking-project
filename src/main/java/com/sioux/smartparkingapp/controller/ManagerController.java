@@ -1,9 +1,7 @@
 package com.sioux.smartparkingapp.controller;
 
-import com.sioux.smartparkingapp.models.Appointment;
 import com.sioux.smartparkingapp.models.Manager;
-import com.sioux.smartparkingapp.servises.AppointmentDetailsServise;
-import com.sioux.smartparkingapp.servises.ManagerService;
+import com.sioux.smartparkingapp.services.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

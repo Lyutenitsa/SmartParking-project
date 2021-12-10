@@ -1,13 +1,10 @@
-package com.sioux.smartparkingapp.servises;
+package com.sioux.smartparkingapp.services;
 
 import com.sioux.smartparkingapp.Repo.ManagerRepository;
-import com.sioux.smartparkingapp.Repo.UserRepository;
-import com.sioux.smartparkingapp.models.Appointment;
 import com.sioux.smartparkingapp.models.Manager;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service

@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.catalina.Manager;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -39,8 +38,9 @@ public class Appointment {
     @Column(name = "visitor_name")
     private String visitorName;
 
-    @Column(name = "manager_id")
-    private String managerID;
+    @ManyToOne
+    @JoinColumn(name = "manager_id", referencedColumnName = "id")
+    private Manager manager;
 
 
     @Column(name = "visitor_phone")
@@ -55,7 +55,7 @@ public class Appointment {
     {
         return "Appointment{" + "id=" + appointment_id + ", starting_time=" + createdDate +
                 ", duration=" + duration + ", licensePlate='" + licensePlate + '\'' +
-                ", visitorName='" + visitorName + '\'' + ", managerID='" + managerID + '\'' +
+                ", visitorName='" + visitorName + '\'' + ", managerID='" + manager.getId() + '\'' +
                 ", visitorPhone='" + visitorPhone + '\'' + '}';
     }
 }

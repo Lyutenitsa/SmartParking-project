@@ -1,4 +1,4 @@
-package com.sioux.smartparkingapp.servises;
+package com.sioux.smartparkingapp.services;
 
 
 import com.sioux.smartparkingapp.Repo.AppointmentRepository;
@@ -7,15 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
-public class AppointmentDetailsServise {
+public class AppointmentDetailsService {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
 
-    public AppointmentDetailsServise(AppointmentRepository appointmentRepository) {
+    public AppointmentDetailsService(AppointmentRepository appointmentRepository) {
         this.appointmentRepository = appointmentRepository;
     }
 
@@ -41,5 +42,8 @@ public class AppointmentDetailsServise {
     public String updateAppointment(Appointment appointment){
         appointmentRepository.save(appointment);
         return "appointment updated successfully";
+    }
+    public Optional<Appointment> findByLicensePlate(String licencePlate){
+        return appointmentRepository.findByLicensePlate(licencePlate);
     }
 }

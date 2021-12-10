@@ -1,4 +1,4 @@
-package com.sioux.smartparkingapp.servises;
+package com.sioux.smartparkingapp.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sioux.smartparkingapp.models.User;
