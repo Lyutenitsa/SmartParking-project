@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ParkingSpotService {
@@ -32,5 +33,54 @@ public class ParkingSpotService {
         return empty;
     }
 
-//    public void update
+    public Boolean updateOccupancyById(Long id){
+
+        Optional<ParkingSpot> dbParkingSpot = spotRepository.findById(id);
+
+
+
+        if(dbParkingSpot.isPresent()){
+
+            ParkingSpot parkingSpot = dbParkingSpot.get();
+            Boolean occupancy = parkingSpot.getOccupied();
+            System.out.println(occupancy);
+
+            parkingSpot.setOccupied(!occupancy);
+
+            spotRepository.save(parkingSpot);
+
+            return true;
+        }
+        else
+        {
+            System.out.println("Parking id not found");
+            return false;
+        }
+
+
+    }
+
+    public Boolean updateOccupancy(ParkingSpot parkingSpot){
+
+        boolean dbParkingSpot = spotRepository.existsById(parkingSpot.getParkingSpot_id());
+
+        if(dbParkingSpot){
+
+            Boolean occupancy = parkingSpot.getOccupied();
+
+            System.out.println("occupied = "+ occupancy);
+            parkingSpot.setOccupied(occupancy);
+
+            spotRepository.save(parkingSpot);
+
+            return true;
+        }
+        else
+        {
+            System.out.println("Parking id not found");
+            return false;
+        }
+
+
+    }
 }

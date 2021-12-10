@@ -63,7 +63,7 @@ public class WebSecurityConfigurations extends WebSecurityConfigurerAdapter {
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/manager/**").permitAll()
                 .antMatchers("/email/**").permitAll()
-                .antMatchers("/email/**").permitAll()
+                .antMatchers("/communication/**").permitAll()
                 .anyRequest()
                 .authenticated();
 

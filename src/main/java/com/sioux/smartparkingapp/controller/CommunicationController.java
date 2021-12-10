@@ -31,9 +31,6 @@ public class CommunicationController {
     @PostMapping("/license")
     private ResponseEntity<?> SendSms(@RequestBody String licensePlate) throws MessagingException
     {
-//        Boolean exists = Boolean.TRUE;
-//        Boolean exists = appointmentDetailsServise.existsByLicence(licencePlate);
-
         Optional<Appointment> dbAppointment = appointmentDetailsServise.findByLicensePlate(licensePlate);
 
         Boolean emptySpot = parkingSpotService.checkForEmptySpot();
@@ -65,14 +62,30 @@ public class CommunicationController {
     }
 
     @PostMapping("/spotUpdate/{id}")
-    public void receiveSpotUpdateID(@PathVariable(value = "id") Long id)
+    public ResponseEntity<?> receiveSpotUpdateID(@PathVariable(value = "id") Long id)
     {
+        if(parkingSpotService.updateOccupancyById(id))
+        {
+            return new ResponseEntity<>("updated parking spot with id= " + id, HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>("Spot not found with id= " + id, HttpStatus.BAD_REQUEST);
+        }
+
 
     }
 
     @PostMapping("/spotUpdate")
-    public void receiveSpotUpdateObject(@RequestBody ParkingSpot parkingSpot)
+    public ResponseEntity<?> receiveSpotUpdateObject(@RequestBody ParkingSpot parkingSpot)
     {
-
+        if(parkingSpotService.updateOccupancy(parkingSpot))
+        {
+            return new ResponseEntity<>("updated parking spot with id= " + parkingSpot.getParkingSpot_id(), HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>("Spot not found with id= " + parkingSpot.getParkingSpot_id(), HttpStatus.BAD_REQUEST);
+        }
     }
 }
